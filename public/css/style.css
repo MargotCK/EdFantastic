@@ -1,0 +1,24 @@
+/* public/css/style.css */
+body {
+    background-image: url('/image/bgEtoile.jpg');
+    background-size: cover; /* Ajuste l'image pour qu'elle couvre tout l'écran */
+    background-repeat: no-repeat; /* Empêche la répétition de l'image */
+    background-attachment: fixed; /* Garde l'image fixe lors du défilement */
+    background-position: center; /* Centre l'image */
+    color: white; /* Facultatif : rend le texte blanc pour plus de contraste */
+}
+
+footer {
+    background-color: #343a40; /* Couleur de fond du footer */
+    color: white; /* Couleur du texte du footer */
+    padding: 20px 0;
+}
+
+footer a {
+    color: white;
+    text-decoration: none;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}

@@ -1,57 +1,69 @@
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-            <a class="navbar-brand" href="#">
-                <img src="/image/logoFantastic.png" width="80" height="40" alt="">
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <a class="navbar-brand" href="#">
+        <img src="/image/logoFantastic.png" width="80" height="40" alt="">
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
 
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="{{path('home')}}">Accueil</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="{{path('univers')}}">Univers Fantastic</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Nos livres
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="{{path('ageName')}}">Age</a></li>
-                            <li><a class="dropdown-item" href="{{path('serieName')}}">Collection</a></li>
-                            <li><a class="dropdown-item" href="{{path('themeName')}}">Thème</a></li>
-                            <li><a class="dropdown-item" href="{{path('genreName')}}">Genre</a></li>
-                            <li><a class="dropdown-item" href="{{path('books')}}">Tous nos livres</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="{{path('nosAuteurs')}}">Nos auteurtrices</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="{{path('nosIllustrateurs')}}">Nos illustrateurtrices</a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">
-                            <i class="fas fa-shopping-cart"></i>
-                        </a>
-                    </li>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="{{path('home')}}">Accueil</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="{{path('univers')}}">Univers Fantastic</a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Nos livres
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <li><a class="dropdown-item" href="{{path('ageName')}}">Age</a></li>
+                    <li><a class="dropdown-item" href="{{path('serieName')}}">Collection</a></li>
+                    <li><a class="dropdown-item" href="{{path('themeName')}}">Thème</a></li>
+                    <li><a class="dropdown-item" href="{{path('genreName')}}">Genre</a></li>
+                    <li><a class="dropdown-item" href="{{path('books')}}">Tous nos livres</a></li>
                 </ul>
-                <form class="d-flex">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success" type="submit">Search</button>
-                </form>
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="{{path('app_admin')}}">Back office</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="{{path('app_login')}}">Connexion</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="{{path('app_logout')}}">Déconnexion</a>
-                    </li>
-            </div>
-        </nav>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="{{path('nosAuteurs')}}">Nos auteurtrices</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="{{path('nosIllustrateurs')}}">Nos illustrateurtrices</a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="#">
+                    <i class="fas fa-shopping-cart"></i>
+                </a>
+            </li>
+
+            {#si l'utilisateur est connecté, il verra #} 
+                
+            
+            <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="{{path('app_mon_compte')}}">Mon compte</a>
+            </li>
+
+            <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="{{path('app_register')}}">Inscription</a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="{{path('app_admin')}}">Back office</a>
+            </li>
+                    
+        
+            <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="{{path('app_login')}}">Connexion</a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="{{path('app_logout')}}">Déconnexion</a>
+            </li>
+            
+
+            
+                                
+        </ul>
+    </div>
+</nav>

@@ -1,19 +1,69 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Register{% endblock %}
-
+{% block title %}Inscription{% endblock %}
+{% block h1 %}Inscription{% endblock %}
 {% block body %}
-    <h1>Register</h1>
+    
 
     {{ form_errors(registrationForm) }}
 
     {{ form_start(registrationForm) }}
+        {{ form_row(registrationForm.prenom)}}
+        {{form_row(registrationForm.nom)}}
         {{ form_row(registrationForm.email) }}
-        {{ form_row(registrationForm.plainPassword, {
-            label: 'Password'
-        }) }}
+
+        
+        <div class="form-group">
+            {{ form_label(registrationForm.plainPassword, 'Mot de passe') }}
+            <div class="input-group">
+                {{ form_widget(registrationForm.plainPassword, { 'attr': {'id': 'plainPassword'} }) }}
+
+                {# insertion du bouton  #}
+                <div class="input-group-append">
+                    <button type="button" class="btn btn-outline-secondary" onclick="togglePasswordVisibility('plainPassword')">
+                        <i class="fa fa-eye" id="plainPasswordIcon"></i>
+                    </button>
+                </div>
+            </div>
+            {{ form_errors(registrationForm.plainPassword) }}
+        </div>
+
+        
+        <div class="form-group">
+            {{ form_label(registrationForm.confirmPassword, 'Confirmation du mot de passe') }}
+
+            {# insertion du bouton  #}
+            <div class="input-group">
+                {{ form_widget(registrationForm.confirmPassword, { 'attr': {'id': 'confirmPassword'} }) }}
+                <div class="input-group-append">
+                    <button type="button" class="btn btn-outline-secondary" onclick="togglePasswordVisibility('confirmPassword')">
+                        <i class="fa fa-eye" id="confirmPasswordIcon"></i>
+                    </button>
+                </div>
+            </div>
+            {{ form_errors(registrationForm.confirmPassword) }}
+        </div>
+
         {{ form_row(registrationForm.agreeTerms) }}
 
-        <button type="submit" class="btn">Register</button>
+        <button type="submit" class="btn btn-primary">Inscription</button>
     {{ form_end(registrationForm) }}
+    
+    {# insertion de l'icône oeil #}
+    <script>
+        function togglePasswordVisibility(fieldId) {
+            var field = document.getElementById(fieldId);
+            var icon = document.getElementById(fieldId + 'Icon');
+            if (field.type === "password") {
+                field.type = "text";
+                icon.classList.remove('fa-eye');
+                icon.classList.add('fa-eye-slash');
+            } else {
+                field.type = "password";
+                icon.classList.remove('fa-eye-slash');
+                icon.classList.add('fa-eye');
+            }
+        }
+    </script>
+
 {% endblock %}

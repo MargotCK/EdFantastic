@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+{% block h1 %}Mon compte{% endblock %}
+{% block title %}Mon compte{% endblock %}
+
+{% block body %}
+<h2>Nom :{{app.user.nom}}</h2>
+<h2>Prénom ::{{app.user.prenom}}</h2>
+<h2>Email ::{{app.user.email}}</h2>
+
+
+<a class="btn btn-info" href="{{path('app_mon_compte_edit')}}">Modifier mes informations</a>
+
+{% endblock %}

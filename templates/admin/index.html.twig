@@ -1,4 +1,8 @@
 {% extends 'base.html.twig' %}
 {% block title %}Back office{% endblock %}
 {% block h1 %}Back office{% endblock %}
-{% block body %}{% endblock %}
+
+{% block body %}
+    <a class="btn btn-dark" href={{path("app_produit_livre")}}>Gestion des produits</a>
+    
+{% endblock %}

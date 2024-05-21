@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Illustrateur{% endblock %}
+
+{% block body %}
+    <h1>Create new Illustrateur</h1>
+
+    {{ include('illustrateur/_form.html.twig') }}
+
+    <a href="{{ path('app_illustrateur_index') }}">back to list</a>
+{% endblock %}

@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}AdresseFacture index{% endblock %}
+
+{% block body %}
+    <h1>AdresseFacture index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>RueFacture</th>
+                <th>VilleFacture</th>
+                <th>CodePostalFacture</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for adresse_facture in adresse_factures %}
+            <tr>
+                <td>{{ adresse_facture.id }}</td>
+                <td>{{ adresse_facture.rueFacture }}</td>
+                <td>{{ adresse_facture.villeFacture }}</td>
+                <td>{{ adresse_facture.codePostalFacture }}</td>
+                <td>
+                    <a href="{{ path('app_adresse_facture_show', {'id': adresse_facture.id}) }}">show</a>
+                    <a href="{{ path('app_adresse_facture_edit', {'id': adresse_facture.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_adresse_facture_new') }}">Create new</a>
+{% endblock %}

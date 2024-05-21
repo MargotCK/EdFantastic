@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Illustrateur{% endblock %}
+
+{% block body %}
+    <h1>Edit Illustrateur</h1>
+
+    {{ include('illustrateur/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('app_illustrateur_index') }}">back to list</a>
+
+    {{ include('illustrateur/_delete_form.html.twig') }}
+{% endblock %}

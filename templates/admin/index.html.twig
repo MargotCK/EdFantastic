@@ -3,6 +3,13 @@
 {% block h1 %}Back office{% endblock %}
 
 {% block body %}
-    <a class="btn btn-dark" href={{path("app_produit_livre")}}>Gestion des produits</a>
-    
+    <a class="btn btn-warning" href={{path("app_livre_index")}}>Gestion des produits</a>
+    <a class="btn btn-warning" href={{path("app_auteur_index")}}>Gestion des auteurs</a>
+<a class="btn btn-warning" href={{path("app_illustrateur_index")}}>Gestion des illustrateurs</a>
+<a class="btn btn-warning" href={{path("app_serie_index")}}>Gestion des collections</a>
+<a class="btn btn-warning" href={{path("app_theme_index")}}>Gestion des thèmes</a>
+<a class="btn btn-warning" href={{path("app_age_index")}}>Gestion des tranches d'âge</a>
+
+
+
 {% endblock %}

@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New AdresseFacture{% endblock %}
+
+{% block body %}
+    <h1>Create new AdresseFacture</h1>
+
+    {{ include('adresse_facture/_form.html.twig') }}
+
+    <a href="{{ path('app_adresse_facture_index') }}">back to list</a>
+{% endblock %}

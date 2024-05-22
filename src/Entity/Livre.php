@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\LivreRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -40,6 +42,47 @@ class Livre
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $couv4 = null;
+
+    #[ORM\ManyToOne(inversedBy: 'livres')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Age $Age = null;
+
+    /**
+     * @var Collection<int, Theme>
+     */
+    #[ORM\ManyToMany(targetEntity: Theme::class, inversedBy: 'livres')]
+    private Collection $Theme;
+
+    #[ORM\ManyToOne(inversedBy: 'livres')]
+    private ?Genre $Genre = null;
+
+    #[ORM\ManyToOne(inversedBy: 'livres')]
+    private ?Illustrateur $Illustrateur = null;
+
+    /**
+     * @var Collection<int, Auteur>
+     */
+    #[ORM\ManyToMany(targetEntity: Auteur::class, inversedBy: 'livres')]
+    private Collection $Auteur;
+
+    #[ORM\ManyToOne(inversedBy: 'livres')]
+    private ?Serie $Serie = null;
+
+    /**
+     * @var Collection<int, User>
+     */
+    #[ORM\ManyToMany(targetEntity: User::class, inversedBy: 'livres')]
+    private Collection $User;
+
+    
+
+    public function __construct()
+    {
+        $this->Theme = new ArrayCollection();
+        $this->Auteur = new ArrayCollection();
+        $this->User = new ArrayCollection();
+        
+    }
 
     public function getId(): ?int
     {
@@ -153,4 +196,127 @@ class Livre
 
         return $this;
     }
+
+    public function getAge(): ?Age
+    {
+        return $this->Age;
+    }
+
+    public function setAge(?Age $Age): static
+    {
+        $this->Age = $Age;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Theme>
+     */
+    public function getTheme(): Collection
+    {
+        return $this->Theme;
+    }
+
+    public function addTheme(Theme $theme): static
+    {
+        if (!$this->Theme->contains($theme)) {
+            $this->Theme->add($theme);
+        }
+
+        return $this;
+    }
+
+    public function removeTheme(Theme $theme): static
+    {
+        $this->Theme->removeElement($theme);
+
+        return $this;
+    }
+
+    public function getGenre(): ?Genre
+    {
+        return $this->Genre;
+    }
+
+    public function setGenre(?Genre $Genre): static
+    {
+        $this->Genre = $Genre;
+
+        return $this;
+    }
+
+    public function getIllustrateur(): ?Illustrateur
+    {
+        return $this->Illustrateur;
+    }
+
+    public function setIllustrateur(?Illustrateur $Illustrateur): static
+    {
+        $this->Illustrateur = $Illustrateur;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Auteur>
+     */
+    public function getAuteur(): Collection
+    {
+        return $this->Auteur;
+    }
+
+    public function addAuteur(Auteur $auteur): static
+    {
+        if (!$this->Auteur->contains($auteur)) {
+            $this->Auteur->add($auteur);
+        }
+
+        return $this;
+    }
+
+    public function removeAuteur(Auteur $auteur): static
+    {
+        $this->Auteur->removeElement($auteur);
+
+        return $this;
+    }
+
+    public function getSerie(): ?Serie
+    {
+        return $this->Serie;
+    }
+
+    public function setSerie(?Serie $Serie): static
+    {
+        $this->Serie = $Serie;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, User>
+     */
+    public function getUser(): Collection
+    {
+        return $this->User;
+    }
+
+    public function addUser(User $user): static
+    {
+        if (!$this->User->contains($user)) {
+            $this->User->add($user);
+        }
+
+        return $this;
+    }
+
+    public function removeUser(User $user): static
+    {
+        $this->User->removeElement($user);
+
+        return $this;
+    }
+
+    
+    
 }

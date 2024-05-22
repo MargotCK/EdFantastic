@@ -1,10 +1,17 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}Ajouter{% endblock %}
+
 {% block h1 %}Ajouter un livre{% endblock %}
+
 {% block body %}
+
     <a class="btn btn-dark" href="{{ path('app_livre_index') }}">Retour</a>
-        <div class="row col-md-8 mx-auto p-2">
-            {{ include('livre/_form.html.twig') }}
-        </div>
+
+    <div class="row col-md-8 mx-auto p-2">
+
+        {{ include('livre/_form.html.twig') }}
+        
+    </div>
+
 {% endblock %}

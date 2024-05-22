@@ -1,16 +1,18 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Age index{% endblock %}
-
+{% block title %}Gestion des tranches d'âge{% endblock %}
+{% block h1 %}Gestion des tranches d'âge|({{ ages|length }}){% endblock %}
 {% block body %}
-    <h1>Age index</h1>
 
-    <table class="table">
-        <thead>
+    
+    <table class="table table-info text-center table-bordered table-hover mt-4">
+        <thead class="table-warning">
             <tr>
                 <th>Id</th>
                 <th>Categorie</th>
-                <th>actions</th>
+                <th>Fiche</th>
+                <th>Modifier</th>
+                <th>Supprimer</th>
             </tr>
         </thead>
         <tbody>
@@ -19,17 +21,26 @@
                 <td>{{ age.id }}</td>
                 <td>{{ age.categorie }}</td>
                 <td>
-                    <a href="{{ path('app_age_show', {'id': age.id}) }}">show</a>
-                    <a href="{{ path('app_age_edit', {'id': age.id}) }}">edit</a>
+                    <a class="btn btn-warning" href="{{ path('app_age_show', {'id': age.id}) }}">Fiche</a>
+                </td>
+                <td>
+                    <a class="btn btn-primary" href="{{ path('app_age_edit', {'id': age.id}) }}">Modifier</a>
+                </td>
+                <td>
+                    <a 
+                        class="btn btn-danger"
+                        onclick="return confirm('Etes-vous sûr de vouloir supprimer cette tranche d'âge ?')" 
+                        href="{{ path('app_age_delete', {'id': age.id}) }}"
+                    >Supprimer</a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="3">no records found</td>
+                <h4 class="text-danger text-center fst-italic mt-4"> Aucun produit</h4>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('app_age_new') }}">Create new</a>
+    <a class="btn btn-info" href="{{ path('app_age_new') }}">Ajouter</a>
 {% endblock %}

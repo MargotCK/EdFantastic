@@ -3,10 +3,19 @@
 namespace App\Form;
 
 use App\Entity\Livre;
+use App\Entity\Serie;
+use App\Entity\Theme;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Validator\Constraints\Length;
+use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\MoneyType;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
+use Symfony\Component\Validator\Constraints\PositiveOrZero;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
 class LivreType extends AbstractType
 {
@@ -18,11 +27,7 @@ class LivreType extends AbstractType
                 'attr'=>[
                 'class'=> ' border border-primary'
                 ],
-                'constraints' => [
-                    new NotBlank([
-                        'message'=> 'Veuillez saisir le titre du produit'
-                    ])                    
-                ]
+                
             ])
 
             ->add('ean', TextType::class,  [
@@ -62,8 +67,28 @@ class LivreType extends AbstractType
                     'class'=> ' border border-primary'
                 ]
             ])
+            ->add('serie', EntityType::class,[
+                'class'=> Serie::class,
+                'choice_label'=> 'nom',       
+            ])
 
-            ->add('quantiteStock', IntegerType::class, [
+            ->add('theme', EntityType::class,[
+                'class'=> Theme::class,
+                'choice_label'=> 'nom',
+                'multiple' => true,
+                'expanded'=> true,
+
+                ])
+
+            ->add('auteur', EntityType::class,[
+                'class'=> Auteur::class,
+                'choice_label'=> 'nom',
+                'multiple' => true,
+                'expanded'=> true,
+
+                ])
+
+            ->add('quantiteStock', IntegerType ::class, [
                 'label'=>'Quantité de livre en stock',
                 'required'=> false,
                 'attr'=>[

@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\CommandeRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -31,6 +33,35 @@ class Commande
 
     #[ORM\Column(length: 255)]
     private ?string $statutCommande = null;
+
+    /**
+     * @var Collection<int, LigneCommande>
+     */
+    #[ORM\OneToMany(targetEntity: LigneCommande::class, mappedBy: 'commande')]
+    private Collection $LigneCommande;
+
+    #[ORM\ManyToOne(inversedBy: 'commandes')]
+    private ?Historique $Historique = null;
+
+    /**
+     * @var Collection<int, AdresseLivraison>
+     */
+    #[ORM\OneToMany(targetEntity: AdresseLivraison::class, mappedBy: 'commande')]
+    private Collection $AdresseLivraison;
+
+    #[ORM\OneToOne(cascade: ['persist', 'remove'])]
+    private ?AdresseFacture $AdresseFacture = null;
+
+    #[ORM\ManyToOne(inversedBy: 'commandes')]
+    private ?User $User = null;
+
+    public function __construct()
+    {
+        $this->LigneCommande = new ArrayCollection();
+        $this->AdresseLivraison = new ArrayCollection();
+    }
+
+   
 
     public function getId(): ?int
     {
@@ -108,4 +139,103 @@ class Commande
 
         return $this;
     }
+
+    /**
+     * @return Collection<int, LigneCommande>
+     */
+    public function getLigneCommande(): Collection
+    {
+        return $this->LigneCommande;
+    }
+
+    public function addLigneCommande(LigneCommande $ligneCommande): static
+    {
+        if (!$this->LigneCommande->contains($ligneCommande)) {
+            $this->LigneCommande->add($ligneCommande);
+            $ligneCommande->setCommande($this);
+        }
+
+        return $this;
+    }
+
+    public function removeLigneCommande(LigneCommande $ligneCommande): static
+    {
+        if ($this->LigneCommande->removeElement($ligneCommande)) {
+            // set the owning side to null (unless already changed)
+            if ($ligneCommande->getCommande() === $this) {
+                $ligneCommande->setCommande(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getHistorique(): ?Historique
+    {
+        return $this->Historique;
+    }
+
+    public function setHistorique(?Historique $Historique): static
+    {
+        $this->Historique = $Historique;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, AdresseLivraison>
+     */
+    public function getAdresseLivraison(): Collection
+    {
+        return $this->AdresseLivraison;
+    }
+
+    public function addAdresseLivraison(AdresseLivraison $adresseLivraison): static
+    {
+        if (!$this->AdresseLivraison->contains($adresseLivraison)) {
+            $this->AdresseLivraison->add($adresseLivraison);
+            $adresseLivraison->setCommande($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAdresseLivraison(AdresseLivraison $adresseLivraison): static
+    {
+        if ($this->AdresseLivraison->removeElement($adresseLivraison)) {
+            // set the owning side to null (unless already changed)
+            if ($adresseLivraison->getCommande() === $this) {
+                $adresseLivraison->setCommande(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getAdresseFacture(): ?AdresseFacture
+    {
+        return $this->AdresseFacture;
+    }
+
+    public function setAdresseFacture(?AdresseFacture $AdresseFacture): static
+    {
+        $this->AdresseFacture = $AdresseFacture;
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->User;
+    }
+
+    public function setUser(?User $User): static
+    {
+        $this->User = $User;
+
+        return $this;
+    }
+
+   
+    
 }

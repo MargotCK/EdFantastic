@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
-#[Route('/illustrateur')]
+#[Route('/admin/illustrateur')]
 class IllustrateurController extends AbstractController
 {
     #[Route('/', name: 'app_illustrateur_index', methods: ['GET'])]

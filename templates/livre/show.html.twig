@@ -31,6 +31,10 @@
                 <td>{{ livre.quantiteStock }}</td>
             </tr>
             <tr>
+                <th>Collection</th>
+                <td>{{ livre.serie.name }}</td>
+            </tr>
+            <tr>
                 <th>1ère de couverture</th>
                 <td>
                 {% if livre.couv1 %}

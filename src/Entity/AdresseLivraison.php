@@ -25,6 +25,9 @@ class AdresseLivraison
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $commentaire = null;
 
+    #[ORM\ManyToOne(inversedBy: 'AdresseLivraison')]
+    private ?Commande $commande = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -74,6 +77,18 @@ class AdresseLivraison
     public function setCommentaire(?string $commentaire): static
     {
         $this->commentaire = $commentaire;
+
+        return $this;
+    }
+
+    public function getCommande(): ?Commande
+    {
+        return $this->commande;
+    }
+
+    public function setCommande(?Commande $commande): static
+    {
+        $this->commande = $commande;
 
         return $this;
     }

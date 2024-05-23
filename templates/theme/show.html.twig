@@ -1,9 +1,8 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}Theme{% endblock %}
-
+{% block h1 %}{{ theme.id }}{% endblock %}
 {% block body %}
-    <h1>Theme</h1>
 
     <table class="table">
         <tbody>
@@ -18,9 +17,9 @@
         </tbody>
     </table>
 
-    <a href="{{ path('app_theme_index') }}">back to list</a>
+    <a class="btn btn-dark" href="{{ path('app_theme_index') }}">Retour</a>
 
-    <a href="{{ path('app_theme_edit', {'id': theme.id}) }}">edit</a>
+    <a class="btn btn-primary" href="{{ path('app_theme_edit', {'id': theme.id}) }}">Modifier</a>
 
     {{ include('theme/_delete_form.html.twig') }}
 {% endblock %}

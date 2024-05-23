@@ -1,15 +1,12 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Modifier{% endblock %}
-
-{% block h1 %}Modifier le livre {{livre.id}}{% endblock %}
-
+{% block title %}Modifier {% endblock %}
+{% block h1 %}Modifier {{livre.id}}{% endblock %}
 {% block body %}
     
-    <a class="btn btn-dark" href="{{ path('app_livre_index') }}">Retour</a>
-
     {{ include('livre/_form.html.twig', {'button_label': 'Modifier'}) }}
 
+    <a class="btn btn-dark" href="{{ path('app_livre_index') }}">Retour</a>
+
     {{ include('livre/_delete_form.html.twig') }}
-    
 {% endblock %}

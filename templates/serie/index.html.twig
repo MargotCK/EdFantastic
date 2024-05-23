@@ -1,16 +1,17 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Serie index{% endblock %}
-
+{% block title %}Gestion des collections{% endblock %}
+{% block h1 %}Gestion des collections|({{ series|length }}){% endblock %}
 {% block body %}
-    <h1>Serie index</h1>
+    
+    <table class="table table-info text-center table-bordered table-hover mt-4">
 
-    <table class="table">
-        <thead>
+        <thead class="table-warning">
             <tr>
                 <th>Id</th>
                 <th>Nom</th>
-                <th>actions</th>
+                <th>Modifier</th>
+                <th>Supprimer</th>
             </tr>
         </thead>
         <tbody>
@@ -19,17 +20,23 @@
                 <td>{{ serie.id }}</td>
                 <td>{{ serie.nom }}</td>
                 <td>
-                    <a href="{{ path('app_serie_show', {'id': serie.id}) }}">show</a>
-                    <a href="{{ path('app_serie_edit', {'id': serie.id}) }}">edit</a>
+                    <a class="btn btn-primary" href="{{ path('app_serie_edit', {'id': serie.id}) }}">Modifier</a>
+                </td>
+                <td>
+                    <a 
+                        class="btn btn-danger"
+                        onclick="return confirm('Etes-vous sûr de vouloir supprimer cette collection ?')" 
+                        href="{{ path('app_serie_delete', {'id': serie.id}) }}"
+                    >Supprimer</a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="3">no records found</td>
+                <td colspan="3">Aucun produit</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('app_serie_new') }}">Create new</a>
+    <a class="btn btn-info" href="{{ path('app_serie_new') }}">Ajouter</a>
 {% endblock %}

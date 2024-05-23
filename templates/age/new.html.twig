@@ -1,12 +1,11 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New Age{% endblock %}
-
+{% block title %}Ajouter une tranche d'âge {% endblock %}
+{% block h1 %}Ajouter une tranche d'âge {% endblock %}
 {% block body %}
-    <h1>Create new Age</h1>
 
     {{ include('age/_form.html.twig') }}
 
-    <a href="{{ path('app_age_index') }}">back to list</a>
+    <a class="btn btn-dark" href="{{ path('app_age_index') }}">Retour</a>
     
 {% endblock %}

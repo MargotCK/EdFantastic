@@ -9,9 +9,10 @@ use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 
-#[Route('/mon/compte')]
+#[Route('profil/mon/compte')]
 class MonCompteController extends AbstractController
 {
+    // ROUTE AFFICHER
     #[Route('/', name: 'app_mon_compte')]
     public function index(): Response
     {
@@ -20,6 +21,7 @@ class MonCompteController extends AbstractController
         ]);
     }
 
+    // ROUTE MODIFIER
     #[Route('/modifier', name: 'app_mon_compte_edit')]
     public function modifier(): Response
     {

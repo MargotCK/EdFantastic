@@ -14,7 +14,8 @@ use Symfony\Component\Routing\Attribute\Route;
 #[Route('/admin/theme')]
 class ThemeController extends AbstractController
 {
-    #[Route('/', name: 'app_theme_index', methods: ['GET'])]
+    // LA ROUTE AFFICHER
+    #[Route('/afficher', name: 'app_theme_index', methods: ['GET'])]
     public function index(ThemeRepository $themeRepository): Response
     {
         return $this->render('theme/index.html.twig', [
@@ -22,7 +23,8 @@ class ThemeController extends AbstractController
         ]);
     }
 
-    #[Route('/new', name: 'app_theme_new', methods: ['GET', 'POST'])]
+    // LA ROUTE AJOUTER
+    #[Route('/ajouter', name: 'app_theme_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
         $theme = new Theme();
@@ -42,6 +44,7 @@ class ThemeController extends AbstractController
         ]);
     }
 
+    // LA FICHE DU FORMULAIRE
     #[Route('/{id}', name: 'app_theme_show', methods: ['GET'])]
     public function show(Theme $theme): Response
     {
@@ -50,7 +53,8 @@ class ThemeController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}/edit', name: 'app_theme_edit', methods: ['GET', 'POST'])]
+    // LA ROUTE MODIFIER
+    #[Route('/modifier/{id}', name: 'app_theme_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Theme $theme, EntityManagerInterface $entityManager): Response
     {
         $form = $this->createForm(ThemeType::class, $theme);
@@ -68,6 +72,7 @@ class ThemeController extends AbstractController
         ]);
     }
 
+     // LA ROUTE SUPPRIMER
     #[Route('/{id}', name: 'app_theme_delete', methods: ['POST'])]
     public function delete(Request $request, Theme $theme, EntityManagerInterface $entityManager): Response
     {

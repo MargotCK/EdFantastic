@@ -1,9 +1,9 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit Age{% endblock %}
-
+{% block title %}Modifier les tranches d'âge{% endblock %}
+{% block h1 %}Modifier {{ age.id }}{% endblock %}
 {% block body %}
-    <h1>Edit Age</h1>
+  
 
     {{ include('age/_form.html.twig', {'button_label': 'Modifier'}) }}
 

@@ -14,7 +14,8 @@ use Symfony\Component\Routing\Attribute\Route;
 #[Route('/profil/ligne/commande')]
 class LigneCommandeController extends AbstractController
 {
-    #[Route('/', name: 'app_ligne_commande_index', methods: ['GET'])]
+     // LA ROUTE AFFICHER
+    #[Route('/afficher', name: 'app_ligne_commande_index', methods: ['GET'])]
     public function index(LigneCommandeRepository $ligneCommandeRepository): Response
     {
         return $this->render('ligne_commande/index.html.twig', [
@@ -22,7 +23,8 @@ class LigneCommandeController extends AbstractController
         ]);
     }
 
-    #[Route('/new', name: 'app_ligne_commande_new', methods: ['GET', 'POST'])]
+     // LA ROUTE AJOUTER
+    #[Route('/ajouter', name: 'app_ligne_commande_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
         $ligneCommande = new LigneCommande();
@@ -42,6 +44,7 @@ class LigneCommandeController extends AbstractController
         ]);
     }
 
+    // LA FICHE DU FORMULAIRE
     #[Route('/{id}', name: 'app_ligne_commande_show', methods: ['GET'])]
     public function show(LigneCommande $ligneCommande): Response
     {
@@ -50,7 +53,8 @@ class LigneCommandeController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}/edit', name: 'app_ligne_commande_edit', methods: ['GET', 'POST'])]
+    // LA ROUTE MODIFIER
+    #[Route('/modifier/{id}', name: 'app_ligne_commande_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, LigneCommande $ligneCommande, EntityManagerInterface $entityManager): Response
     {
         $form = $this->createForm(LigneCommandeType::class, $ligneCommande);
@@ -68,6 +72,7 @@ class LigneCommandeController extends AbstractController
         ]);
     }
 
+    // LA ROUTE SUPPRIMER
     #[Route('/{id}', name: 'app_ligne_commande_delete', methods: ['POST'])]
     public function delete(Request $request, LigneCommande $ligneCommande, EntityManagerInterface $entityManager): Response
     {

@@ -14,7 +14,8 @@ use Symfony\Component\Routing\Attribute\Route;
 #[Route('/admin/serie')]
 class SerieController extends AbstractController
 {
-    #[Route('/', name: 'app_serie_index', methods: ['GET'])]
+    // LA ROUTE AFFICHER
+    #[Route('/afficher', name: 'app_serie_index', methods: ['GET'])]
     public function index(SerieRepository $serieRepository): Response
     {
         return $this->render('serie/index.html.twig', [
@@ -22,7 +23,8 @@ class SerieController extends AbstractController
         ]);
     }
 
-    #[Route('/new', name: 'app_serie_new', methods: ['GET', 'POST'])]
+    // LA ROUTE AJOUTER
+    #[Route('/ajouter', name: 'app_serie_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
         $serie = new Serie();
@@ -42,6 +44,7 @@ class SerieController extends AbstractController
         ]);
     }
 
+    // LA FICHE DU FORMULAIRE
     #[Route('/{id}', name: 'app_serie_show', methods: ['GET'])]
     public function show(Serie $serie): Response
     {
@@ -50,7 +53,8 @@ class SerieController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}/edit', name: 'app_serie_edit', methods: ['GET', 'POST'])]
+    // LA ROUTE MODIFIER
+    #[Route('/modifier/{id}', name: 'app_serie_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Serie $serie, EntityManagerInterface $entityManager): Response
     {
         $form = $this->createForm(SerieType::class, $serie);
@@ -68,6 +72,7 @@ class SerieController extends AbstractController
         ]);
     }
 
+     // LA ROUTE SUPPRIMER
     #[Route('/{id}', name: 'app_serie_delete', methods: ['POST'])]
     public function delete(Request $request, Serie $serie, EntityManagerInterface $entityManager): Response
     {

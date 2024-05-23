@@ -1,14 +1,10 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Afficher les livres{% endblock %}
-
-{% block h1 %}{{ livre.titre }}{% endblock %}
-
+{% block title %}Livre{% endblock %}
+{% block h1 %}{{ livre.titre|capitalize }}{% endblock %}
 {% block body %}
-    
-    <a class="btn btn-dark" href="{{ path('app_livre_index') }}">Retour</a>
 
-    <table class="table table-hover mt-3">
+    <table class="table">
         <tbody>
             <tr>
                 <th>Id</th>
@@ -23,19 +19,31 @@
                 <td>{{ livre.ean }}</td>
             </tr>
             <tr>
+                <th>Age</th>
+                <td>{{ livre.age }}</td>
+            </tr>
+            <tr>
                 <th>Prix</th>
                 <td>{{ livre.prix }}</td>
+            </tr>
+            <tr>
+                <th>DatePublication</th>
+                <td>{{ livre.datePublication ? livre.datePublication|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>NbPage</th>
+                <td>{{ livre.nbPage }}</td>
+            </tr>
+            <tr>
+                <th>Format</th>
+                <td>{{ livre.format }}</td>
             </tr>
             <tr>
                 <th>QuantiteStock</th>
                 <td>{{ livre.quantiteStock }}</td>
             </tr>
             <tr>
-                <th>Collection</th>
-                <td>{{ livre.serie.name }}</td>
-            </tr>
-            <tr>
-                <th>1ère de couverture</th>
+                <th>Couv1</th>
                 <td>
                 {% if livre.couv1 %}
                     <img src="{{asset('imageCouv1/'~ livre.couv1)}}" alt="" class="w-25">
@@ -44,44 +52,26 @@
                 {% endif %}
                 </td>
             </tr>
-            tr>
-            <th>4ème de couverture</th>
-            <td>
+            <tr>
+                <th>Couv4</th>
+                <td>
                 {% if livre.couv4 %}
                     <img src="{{asset('imageCouv1/'~ livre.couv1)}}" alt="" class="w-25">
                 {% else %}
                     <span class="fst-italic text-danger">Non renseignée</span>
                 {% endif %}
-            </td>
-        </tr>
-        <tr>
-            <th>Résumé</th>
-            <td>
-                {% if  livre.resumeLivre %}
-                    {{ livre.resumeLivre}}
-                {% else %}
-                    <span class="fst-italic text-danger">Non renseignée</span>
-                {% endif %}
-            </td>
-        </tr>
-        <tr>
-            <th>Format</th>
-            <td>
-                {% if  livre.format %}
-                    {{ livre.format|capitalize }}
-                {% else %}
-                    <span class="fst-italic text-danger">Non renseignée</span>
-                {% endif %}
-            </td>
-        </tr>
-
-        <tr>
-            <th>Nombre de pages</th>
-            <td>{{ livre.nbPage }}</td>
-        </tr>
-
+                </td>
+            </tr>
+            <tr>
+                <th>Resume</th>
+                <td>{{ livre.resume }}</td>
+            </tr>
         </tbody>
     </table>
 
-    
+    <a class="btn btn-dark" href="{{ path('app_livre_index') }}">Retour</a>
+
+    <a class="btn btn-primary" href="{{ path('app_livre_edit', {'id': livre.id}) }}">Modifier</a>
+
+    {{ include('livre/_delete_form.html.twig') }}
 {% endblock %}

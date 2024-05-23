@@ -14,7 +14,8 @@ use Symfony\Component\Routing\Attribute\Route;
 #[Route('/admin/genre')]
 class GenreController extends AbstractController
 {
-    #[Route('/', name: 'app_genre_index', methods: ['GET'])]
+    // LA ROUTE AFFICHER
+    #[Route('/afficher', name: 'app_genre_index', methods: ['GET'])]
     public function index(GenreRepository $genreRepository): Response
     {
         return $this->render('genre/index.html.twig', [
@@ -22,7 +23,8 @@ class GenreController extends AbstractController
         ]);
     }
 
-    #[Route('/new', name: 'app_genre_new', methods: ['GET', 'POST'])]
+     // LA ROUTE AJOUTER
+    #[Route('/ajouter', name: 'app_genre_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
         $genre = new Genre();
@@ -42,6 +44,7 @@ class GenreController extends AbstractController
         ]);
     }
 
+    // LA FICHE DU FORMULAIRE
     #[Route('/{id}', name: 'app_genre_show', methods: ['GET'])]
     public function show(Genre $genre): Response
     {
@@ -50,7 +53,8 @@ class GenreController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}/edit', name: 'app_genre_edit', methods: ['GET', 'POST'])]
+    // LA ROUTE MODIFIER
+    #[Route('/modifier/{id}', name: 'app_genre_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Genre $genre, EntityManagerInterface $entityManager): Response
     {
         $form = $this->createForm(GenreType::class, $genre);
@@ -68,6 +72,7 @@ class GenreController extends AbstractController
         ]);
     }
 
+     // LA ROUTE SUPPRIMER
     #[Route('/{id}', name: 'app_genre_delete', methods: ['POST'])]
     public function delete(Request $request, Genre $genre, EntityManagerInterface $entityManager): Response
     {

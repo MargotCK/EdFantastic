@@ -14,7 +14,8 @@ use Symfony\Component\Routing\Attribute\Route;
 #[Route('/profil/commande')]
 class CommandeController extends AbstractController
 {
-    #[Route('/', name: 'app_commande_index', methods: ['GET'])]
+    // LA ROUTE AFFICHER
+    #[Route('/afficher', name: 'app_commande_index', methods: ['GET'])]
     public function index(CommandeRepository $commandeRepository): Response
     {
         return $this->render('commande/index.html.twig', [
@@ -22,7 +23,8 @@ class CommandeController extends AbstractController
         ]);
     }
 
-    #[Route('/new', name: 'app_commande_new', methods: ['GET', 'POST'])]
+     // LA ROUTE AJOUTER
+    #[Route('/ajouter', name: 'app_commande_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
         $commande = new Commande();
@@ -42,6 +44,7 @@ class CommandeController extends AbstractController
         ]);
     }
 
+    // LA FICHE DU FORMULAIRE
     #[Route('/{id}', name: 'app_commande_show', methods: ['GET'])]
     public function show(Commande $commande): Response
     {
@@ -50,7 +53,8 @@ class CommandeController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}/edit', name: 'app_commande_edit', methods: ['GET', 'POST'])]
+    // LA ROUTE MODIFIER
+    #[Route('/modifier/{id}', name: 'app_commande_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Commande $commande, EntityManagerInterface $entityManager): Response
     {
         $form = $this->createForm(CommandeType::class, $commande);
@@ -68,6 +72,7 @@ class CommandeController extends AbstractController
         ]);
     }
 
+     // LA ROUTE SUPPRIMER
     #[Route('/{id}', name: 'app_commande_delete', methods: ['POST'])]
     public function delete(Request $request, Commande $commande, EntityManagerInterface $entityManager): Response
     {

@@ -1,9 +1,8 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}AdresseFacture{% endblock %}
-
+{% block title %}Adresse de facturation{% endblock %}
+{% block h1 %}{{ adresse_facture.id }}{% endblock %}
 {% block body %}
-    <h1>AdresseFacture</h1>
 
     <table class="table">
         <tbody>
@@ -26,9 +25,9 @@
         </tbody>
     </table>
 
-    <a href="{{ path('app_adresse_facture_index') }}">back to list</a>
+    <a class="btn btn-dark" href="{{ path('app_adresse_facture_index') }}">Retour</a>
 
-    <a href="{{ path('app_adresse_facture_edit', {'id': adresse_facture.id}) }}">edit</a>
+    <a class="btn btn-primary" href="{{ path('app_adresse_facture_edit', {'id': adresse_facture.id}) }}">Modifier</a>
 
     {{ include('adresse_facture/_delete_form.html.twig') }}
 {% endblock %}

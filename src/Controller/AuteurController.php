@@ -14,7 +14,8 @@ use Symfony\Component\Routing\Attribute\Route;
 #[Route('/admin/auteur')]
 class AuteurController extends AbstractController
 {
-    #[Route('/', name: 'app_auteur_index', methods: ['GET'])]
+    // LA ROUTE AFFICHER
+    #[Route('/afficher', name: 'app_auteur_index', methods: ['GET'])]
     public function index(AuteurRepository $auteurRepository): Response
     {
         return $this->render('auteur/index.html.twig', [
@@ -22,7 +23,8 @@ class AuteurController extends AbstractController
         ]);
     }
 
-    #[Route('/new', name: 'app_auteur_new', methods: ['GET', 'POST'])]
+    // LA ROUTE AJOUTER
+    #[Route('/ajouter', name: 'app_auteur_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
         $auteur = new Auteur();
@@ -42,6 +44,7 @@ class AuteurController extends AbstractController
         ]);
     }
 
+    // LA FICHE DU FORMULAIRE
     #[Route('/{id}', name: 'app_auteur_show', methods: ['GET'])]
     public function show(Auteur $auteur): Response
     {
@@ -50,7 +53,8 @@ class AuteurController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}/edit', name: 'app_auteur_edit', methods: ['GET', 'POST'])]
+     // LA ROUTE MODIFIER
+    #[Route('/modifier/{id}', name: 'app_auteur_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Auteur $auteur, EntityManagerInterface $entityManager): Response
     {
         $form = $this->createForm(AuteurType::class, $auteur);
@@ -68,6 +72,7 @@ class AuteurController extends AbstractController
         ]);
     }
 
+    // LA ROUTE SUPPRIMER
     #[Route('/{id}', name: 'app_auteur_delete', methods: ['POST'])]
     public function delete(Request $request, Auteur $auteur, EntityManagerInterface $entityManager): Response
     {

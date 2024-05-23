@@ -1,11 +1,5 @@
- {{form_start(formLivre)}}
-            
-    {{form_row(formLivre.titre)}}
-    {{form_row(formLivre.ean)}}
-    {{form_row(formLivre.prix)}}
-    {{form_row(formLivre.quantiteStock)}}
-    {{form_row(formLivre.couv1)}}
-    {{form_row(formLivre.serie)}}
-    
-    <input type="submit" value="ajouter" class="btn btn-primary w-100">
-{{form_end(formLivre)}}
+{{ form_start(form) }}
+    {{ form_widget(form) }}
+    <button class="btn btn-info w-100">{{ button_label|default('Ajouter') }}</button>
+{{ form_end(form) }}
+

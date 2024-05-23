@@ -1,10 +1,9 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}AdresseFacture index{% endblock %}
-
+{% block title %}Gestion des adresses de facturation{% endblock %}
+{% block h1 %}Gestion des adresses de facturation{% endblock %}
 {% block body %}
-    <h1>AdresseFacture index</h1>
-
+    
     <table class="table">
         <thead>
             <tr>
@@ -12,7 +11,8 @@
                 <th>RueFacture</th>
                 <th>VilleFacture</th>
                 <th>CodePostalFacture</th>
-                <th>actions</th>
+                <th>Fiche</th>
+                <th>Modifier</th>
             </tr>
         </thead>
         <tbody>
@@ -23,17 +23,19 @@
                 <td>{{ adresse_facture.villeFacture }}</td>
                 <td>{{ adresse_facture.codePostalFacture }}</td>
                 <td>
-                    <a href="{{ path('app_adresse_facture_show', {'id': adresse_facture.id}) }}">show</a>
-                    <a href="{{ path('app_adresse_facture_edit', {'id': adresse_facture.id}) }}">edit</a>
+                    <a class="btn btn-warning" href="{{ path('app_livre_show', {'id': adresse_facture.id}) }}">Fiche</a>
+                </td>
+                <td>
+                    <a class="btn btn-primary" href="{{ path('app_livre_edit', {'id':adresse_facture.id}) }}">Modifier</a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="5">no records found</td>
+                <td colspan="5">Aucun résultat</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('app_adresse_facture_new') }}">Create new</a>
+    <a class="btn btn-info" href="{{ path('app_adresse_facture_new') }}">Ajouter</a>
 {% endblock %}

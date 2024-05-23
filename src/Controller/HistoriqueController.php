@@ -14,7 +14,8 @@ use Symfony\Component\Routing\Attribute\Route;
 #[Route('/profil/historique')]
 class HistoriqueController extends AbstractController
 {
-    #[Route('/', name: 'app_historique_index', methods: ['GET'])]
+     // LA ROUTE AFFICHER
+    #[Route('/afficher', name: 'app_historique_index', methods: ['GET'])]
     public function index(HistoriqueRepository $historiqueRepository): Response
     {
         return $this->render('historique/index.html.twig', [
@@ -22,7 +23,8 @@ class HistoriqueController extends AbstractController
         ]);
     }
 
-    #[Route('/new', name: 'app_historique_new', methods: ['GET', 'POST'])]
+    // LA ROUTE AJOUTER
+    #[Route('/ajouter', name: 'app_historique_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
         $historique = new Historique();
@@ -42,6 +44,7 @@ class HistoriqueController extends AbstractController
         ]);
     }
 
+     // LA FICHE DU FORMULAIRE
     #[Route('/{id}', name: 'app_historique_show', methods: ['GET'])]
     public function show(Historique $historique): Response
     {
@@ -50,7 +53,8 @@ class HistoriqueController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}/edit', name: 'app_historique_edit', methods: ['GET', 'POST'])]
+     // LA ROUTE MODIFIER
+    #[Route('/modifier/{id}', name: 'app_historique_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Historique $historique, EntityManagerInterface $entityManager): Response
     {
         $form = $this->createForm(HistoriqueType::class, $historique);
@@ -68,6 +72,7 @@ class HistoriqueController extends AbstractController
         ]);
     }
 
+     // LA ROUTE SUPPRIMER
     #[Route('/{id}', name: 'app_historique_delete', methods: ['POST'])]
     public function delete(Request $request, Historique $historique, EntityManagerInterface $entityManager): Response
     {

@@ -14,7 +14,8 @@ use Symfony\Component\Routing\Attribute\Route;
 #[Route('/admin/illustrateur')]
 class IllustrateurController extends AbstractController
 {
-    #[Route('/', name: 'app_illustrateur_index', methods: ['GET'])]
+     // LA ROUTE AFFICHER
+    #[Route('/afficher', name: 'app_illustrateur_index', methods: ['GET'])]
     public function index(IllustrateurRepository $illustrateurRepository): Response
     {
         return $this->render('illustrateur/index.html.twig', [
@@ -22,7 +23,8 @@ class IllustrateurController extends AbstractController
         ]);
     }
 
-    #[Route('/new', name: 'app_illustrateur_new', methods: ['GET', 'POST'])]
+    // LA ROUTE AJOUTER
+    #[Route('/ajouter', name: 'app_illustrateur_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
         $illustrateur = new Illustrateur();
@@ -42,6 +44,7 @@ class IllustrateurController extends AbstractController
         ]);
     }
 
+     // LA FICHE DU FORMULAIRE
     #[Route('/{id}', name: 'app_illustrateur_show', methods: ['GET'])]
     public function show(Illustrateur $illustrateur): Response
     {
@@ -50,7 +53,8 @@ class IllustrateurController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}/edit', name: 'app_illustrateur_edit', methods: ['GET', 'POST'])]
+     // LA ROUTE MODIFIER
+    #[Route('/modifier/{id}', name: 'app_illustrateur_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Illustrateur $illustrateur, EntityManagerInterface $entityManager): Response
     {
         $form = $this->createForm(IllustrateurType::class, $illustrateur);
@@ -68,6 +72,7 @@ class IllustrateurController extends AbstractController
         ]);
     }
 
+     // LA ROUTE SUPPRIMER
     #[Route('/{id}', name: 'app_illustrateur_delete', methods: ['POST'])]
     public function delete(Request $request, Illustrateur $illustrateur, EntityManagerInterface $entityManager): Response
     {

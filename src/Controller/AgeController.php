@@ -14,7 +14,8 @@ use Symfony\Component\Routing\Attribute\Route;
 #[Route('/admin/age')]
 class AgeController extends AbstractController
 {
-    #[Route('/', name: 'app_age_index', methods: ['GET'])]
+    // LA ROUTE AFFICHER
+    #[Route('/afficher', name: 'app_age_index', methods: ['GET'])]
     public function index(AgeRepository $ageRepository): Response
     {
         return $this->render('age/index.html.twig', [
@@ -22,7 +23,8 @@ class AgeController extends AbstractController
         ]);
     }
 
-    #[Route('/new', name: 'app_age_new', methods: ['GET', 'POST'])]
+    // LA ROUTE AJOUTER
+    #[Route('/ajouter', name: 'app_age_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
         $age = new Age();
@@ -42,6 +44,7 @@ class AgeController extends AbstractController
         ]);
     }
 
+    // LA FICHE DU FORMULAIRE
     #[Route('/{id}', name: 'app_age_show', methods: ['GET'])]
     public function show(Age $age): Response
     {
@@ -50,7 +53,8 @@ class AgeController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}/edit', name: 'app_age_edit', methods: ['GET', 'POST'])]
+     // LA ROUTE MODIFIER
+    #[Route('/modifier/{id}', name: 'app_age_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Age $age, EntityManagerInterface $entityManager): Response
     {
         $form = $this->createForm(AgeType::class, $age);
@@ -68,6 +72,7 @@ class AgeController extends AbstractController
         ]);
     }
 
+    // LA ROUTE SUPPRIMER
     #[Route('/{id}', name: 'app_age_delete', methods: ['POST'])]
     public function delete(Request $request, Age $age, EntityManagerInterface $entityManager): Response
     {

@@ -5,8 +5,11 @@ namespace App\Form;
 use App\Entity\Livre;
 use App\Entity\Serie;
 use App\Entity\Theme;
+use App\Entity\Auteur;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Validator\Constraints\Image;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -111,8 +114,9 @@ class LivreType extends AbstractType
                 'mapped'=> false,
                 'attr'=>[
                     'class'=> ' border border-primary'
-                ]
-                /**'constraints'=> [
+                ],
+
+                'constraints'=> [
                     new Image([
                         'minWidth' => 200,
                         'maxWidth' => 400,
@@ -121,7 +125,7 @@ class LivreType extends AbstractType
                         'allowLandscape' => false,
                         'allowPortrait' => false,
                     ])
-                ]*/
+                ]
             ])
 
 

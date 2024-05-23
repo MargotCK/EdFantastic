@@ -37,14 +37,14 @@ class LivreController extends AbstractController
             
             if($imageFile){
 
-                $couv1ChatAlors = date(YmdHis).'-'.uniquid().'-'.$imageFile->getClientOriginalName();
+                $nomImage= date('YmdHis').'-'.uniqid().'-'.$imageFile->getClientOriginalName();
                 //$couv4chatAlors = date(YmdHis).'-'.uniquid().'-'.$imageFile->getClientOriginalExtension();
                 $imageFile->move(
-                    $this->getParameter('livre'),
-                    $couv1ChatAlors
+                    $this->getParameter('couv1'),
+                    $nomImage
                 );
 
-                $livre->setImage($couv1ChatAlors);
+                $livre->setImage($nomImage);
             }
 
             $entityManager->persist($livre);
@@ -55,7 +55,7 @@ class LivreController extends AbstractController
 
         return $this->render('livre/new.html.twig', [
             'livre' => $livre,
-            'form' => $form,
+            'form' => $form->createView(),
         ]);
     }
     

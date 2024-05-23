@@ -1,13 +1,13 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit AdresseFacture{% endblock %}
-
+{% block title %}Modifier l'adresse de facturation{% endblock %}
+{% block h1 %}Modifier {{ adresse_facture.id }}{% endblock %}
 {% block body %}
-    <h1>Edit AdresseFacture</h1>
+   
 
-    {{ include('adresse_facture/_form.html.twig', {'button_label': 'Update'}) }}
+    {{ include('adresse_facture/_form.html.twig', {'button_label': 'Modifier'}) }}
 
-    <a href="{{ path('app_adresse_facture_index') }}">back to list</a>
+    <a class="btn btn-dark" href="{{ path('app_adresse_facture_index') }}">Retour</a>
 
     {{ include('adresse_facture/_delete_form.html.twig') }}
 {% endblock %}

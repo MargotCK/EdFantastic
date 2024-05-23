@@ -13,8 +13,9 @@ use Symfony\Component\Routing\Attribute\Route;
 
 #[Route('/profil/adresse/livraison')]
 class AdresseLivraisonController extends AbstractController
-{
-    #[Route('/', name: 'app_adresse_livraison_index', methods: ['GET'])]
+{   
+    // LA ROUTE AFFICHER
+    #[Route('/afficher', name: 'app_adresse_livraison_index', methods: ['GET'])]
     public function index(AdresseLivraisonRepository $adresseLivraisonRepository): Response
     {
         return $this->render('adresse_livraison/index.html.twig', [
@@ -22,7 +23,8 @@ class AdresseLivraisonController extends AbstractController
         ]);
     }
 
-    #[Route('/new', name: 'app_adresse_livraison_new', methods: ['GET', 'POST'])]
+    // LA ROUTE AJOUTER
+    #[Route('/ajouter', name: 'app_adresse_livraison_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
         $adresseLivraison = new AdresseLivraison();
@@ -42,6 +44,7 @@ class AdresseLivraisonController extends AbstractController
         ]);
     }
 
+     // LA FICHE DU FORMULAIRE
     #[Route('/{id}', name: 'app_adresse_livraison_show', methods: ['GET'])]
     public function show(AdresseLivraison $adresseLivraison): Response
     {
@@ -50,7 +53,8 @@ class AdresseLivraisonController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}/edit', name: 'app_adresse_livraison_edit', methods: ['GET', 'POST'])]
+    // LA ROUTE MODIFIER
+    #[Route('/modifier/{id}', name: 'app_adresse_livraison_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, AdresseLivraison $adresseLivraison, EntityManagerInterface $entityManager): Response
     {
         $form = $this->createForm(AdresseLivraisonType::class, $adresseLivraison);
@@ -68,6 +72,7 @@ class AdresseLivraisonController extends AbstractController
         ]);
     }
 
+     // LA ROUTE SUPPRIMER
     #[Route('/{id}', name: 'app_adresse_livraison_delete', methods: ['POST'])]
     public function delete(Request $request, AdresseLivraison $adresseLivraison, EntityManagerInterface $entityManager): Response
     {

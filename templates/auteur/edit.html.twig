@@ -1,13 +1,13 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit Auteur{% endblock %}
-
+{% block title %}Modifier les auteurs{% endblock %}
+{% block h1 %}Modifier {{ auteur.id }}{% endblock %}
 {% block body %}
-    <h1>Edit Auteur</h1>
 
-    {{ include('auteur/_form.html.twig', {'button_label': 'Update'}) }}
 
-    <a href="{{ path('app_auteur_index') }}">back to list</a>
+    {{ include('auteur/_form.html.twig', {'button_label': 'Modfifier'}) }}
+
+    <a class="btn btn-dark"  href="{{ path('app_auteur_index') }}">Retour</a>
 
     {{ include('auteur/_delete_form.html.twig') }}
 {% endblock %}

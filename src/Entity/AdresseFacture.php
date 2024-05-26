@@ -22,6 +22,9 @@ class AdresseFacture
     #[ORM\Column(length: 50)]
     private ?string $codePostalFacture = null;
 
+    #[ORM\ManyToOne(inversedBy: 'AdresseFacture')]
+    private ?User $user = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -59,6 +62,18 @@ class AdresseFacture
     public function setCodePostalFacture(string $codePostalFacture): static
     {
         $this->codePostalFacture = $codePostalFacture;
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): static
+    {
+        $this->user = $user;
 
         return $this;
     }

@@ -37,7 +37,7 @@ class Commande
     /**
      * @var Collection<int, LigneCommande>
      */
-    #[ORM\OneToMany(targetEntity: LigneCommande::class, mappedBy: 'commande')]
+    #[ORM\OneToMany( targetEntity: LigneCommande::class, mappedBy: 'commande',cascade:['persist'])]
     private Collection $LigneCommande;
 
     #[ORM\ManyToOne(inversedBy: 'commandes')]
@@ -55,10 +55,18 @@ class Commande
     #[ORM\ManyToOne(inversedBy: 'commandes')]
     private ?User $User = null;
 
+    /**
+     * @var Collection<int, Livre>
+     */
+    #[ORM\OneToMany(targetEntity: Livre::class, mappedBy: 'commande')]
+    private Collection $Livre;
+
     public function __construct()
     {
         $this->LigneCommande = new ArrayCollection();
+        $this->Historique = new ArrayCollection();
         $this->AdresseLivraison = new ArrayCollection();
+        $this->Livre = new ArrayCollection();
     }
 
    
@@ -232,6 +240,36 @@ class Commande
     public function setUser(?User $User): static
     {
         $this->User = $User;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Livre>
+     */
+    public function getLivre(): Collection
+    {
+        return $this->Livre;
+    }
+
+    public function addLivre(Livre $livre): static
+    {
+        if (!$this->Livre->contains($livre)) {
+            $this->Livre->add($livre);
+            $livre->setCommande($this);
+        }
+
+        return $this;
+    }
+
+    public function removeLivre(Livre $livre): static
+    {
+        if ($this->Livre->removeElement($livre)) {
+            // set the owning side to null (unless already changed)
+            if ($livre->getCommande() === $this) {
+                $livre->setCommande(null);
+            }
+        }
 
         return $this;
     }

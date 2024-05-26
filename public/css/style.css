@@ -4,6 +4,8 @@ footer {
     background-color: #343a40; /* Couleur de fond du footer */
     color: white; /* Couleur du texte du footer */
     padding: 20px 0;
+    font-size: 16px;
+    min-height: 20vh;
 }
 
 footer a {
@@ -13,4 +15,10 @@ footer a {
 
 footer a:hover {
     text-decoration: underline;
+}
+nav{
+    min-height: 10vh;
+}
+section {
+    min-height: 70vh;
 }

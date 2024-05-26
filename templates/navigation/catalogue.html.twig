@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+{% block title %}Catalogue{% endblock %}
+{% block h1 %}Catalogue{% endblock %}
+
+{% block body %}
+
+    <div class ="row justify-content-between">
+
+        {% for livre in livres %}
+            <div class="shadow p-4 m-2 text-center col-lg-3">
+
+                <h2>{{livre.titre}}</h2>
+                <h3>{{livre.prix}} €</h3>
+                <a class="btn btn-warning w-100" href="{{path('fiche_livre', {'id': livre.id})}}">Voir le livre</a>
+
+            </div>
+
+        {% endfor %}
+
+    </div>
+{% endblock %}

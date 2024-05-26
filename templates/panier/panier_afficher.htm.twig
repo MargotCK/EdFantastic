@@ -1,0 +1,31 @@
+{# templates/panier/afficher.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<h1>Votre Panier</h1>
+
+<table>
+    <thead>
+        <tr>
+            <th>Livre</th>
+            <th>Quantité</th>
+            <th>Prix</th>
+            <th>Total</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for id, item in panier %}
+            <tr>
+                <td>{{ id }}</td> {# Changez ceci en affichant des détails de livre, par exemple en récupérant le livre par son ID #}
+                <td>{{ item.quantite }}</td>
+                <td>{{ item.prix }}</td>
+                <td>{{ item.quantite * item.prix }}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<p>Total: {{ total }}</p>
+
+<a href="{{ path('panier_commander') }}">Passer Commande</a>
+{% endblock %}

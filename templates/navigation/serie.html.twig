@@ -1,4 +1,114 @@
 {% extends 'base.html.twig' %}
 {% block title %}Collections{% endblock %}
 {% block h1 %} Collections{% endblock %}
-{% block body %}{% endblock %}
+{% block body %}
+
+<div class="container mt-3">
+    <h1 class="text-center text-primary">Nos collections</h1>
+
+    <div class="row">
+        <h3>Mïa la petite licorne</h3>
+        <div class="col-md-4">
+            <div class="card" style="width: 18rem;">
+                <img src="/imageCouv1/couv1Mia.jpg" class="card-img-top"  height="150" alt="...">
+                <div class="card-body">
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    {#<a href="{{ path('livre_show', {'id': 1}) }}" class="btn btn-primary">Voir Détails</a>#}
+                    {#<a href="{{ path('livre_show', {'id': livre.id}) }}" class="btn btn-primary">Ajouter au panier</a>#}
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card" style="width: 18rem;">
+                <img src="/imageCouv1/couv1MiaAnniversaire.jpg" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    {#<a href="{{ path('livre_show', {'id': 1}) }}" class="btn btn-primary">Voir Détails</a>#}
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card" style="width: 18rem;">
+                <img src="/imageCouv1/couv1MiaNeVeutPasDormir.jpg" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    {#<a href="{{ path('livre_show', {'id': 1}) }}" class="btn btn-primary">Voir Détails</a>#}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <h3>Petit Yéti</h3>
+        <div class="col-md-4">
+            <div class="card" style="width: 18rem;">
+                <img src="/imageCouv1/couv1PetitPanda" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    {#<a href="{{ path('livre_show', {'id': 1}) }}" class="btn btn-primary">Voir Détails</a>#}
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card" style="width: 18rem;">
+                <img src="..." class="card-img-top" alt="...">
+                <div class="card-body">
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    {#<a href="{{ path('livre_show', {'id': 1}) }}" class="btn btn-primary">Voir Détails</a>#}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <h3>Petit Panda</h3>
+        <div class="col-md-4">
+            <div class="card" style="width: 18rem;">
+                <img src="..." class="card-img-top" alt="...">
+                <div class="card-body">
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    {#<a href="{{ path('livre_show', {'id': 1}) }}" class="btn btn-primary">Voir Détails</a>#}
+                </div>
+            </div>
+        </div>
+    <div class="row">
+        <h3>Première lecture</h3>
+        <div class="col-md-4">
+            <div class="card" style="width: 18rem;">
+                <img src="..." class="card-img-top" alt="...">
+                <div class="card-body">
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    {#<a href="{{ path('livre_show', {'id': 1}) }}" class="btn btn-primary">Voir Détails</a>#}
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card" style="width: 18rem;">
+                <img src="..." class="card-img-top" alt="...">
+                <div class="card-body">
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    {#<a href="{{ path('livre_show', {'id': 1}) }}" class="btn btn-primary">Voir Détails</a>#}
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card" style="width: 18rem;">
+                <img src="..." class="card-img-top" alt="...">
+                <div class="card-body">
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    {#<a href="{{ path('livre_show', {'id': 1}) }}" class="btn btn-primary">Voir Détails</a>#}
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card" style="width: 18rem;">
+                <img src="..." class="card-img-top" alt="...">
+                <div class="card-body">
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    {#<a href="{{ path('livre_show', {'id': 1}) }}" class="btn btn-primary">Voir Détails</a>#}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

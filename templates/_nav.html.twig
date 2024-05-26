@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
     <a class="navbar-brand" href="#">
-        <img src="/image/logoFantastic.png" width="80" height="40" alt="">
+        <img src="/image/logoFantastic.png" width="80" height="40" alt="logo des éditions Fantastic">
     </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -19,11 +19,12 @@
                     Nos livres
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <li><a class="dropdown-item" href="{{path('catalogue')}}">Tous nos livres</a></li>
                     <li><a class="dropdown-item" href="{{path('ageName')}}">Age</a></li>
                     <li><a class="dropdown-item" href="{{path('serieName')}}">Collection</a></li>
                     <li><a class="dropdown-item" href="{{path('themeName')}}">Thème</a></li>
                     <li><a class="dropdown-item" href="{{path('genreName')}}">Genre</a></li>
-                    <li><a class="dropdown-item" href="{{path('books')}}">Tous nos livres</a></li>
+                    
                 </ul>
             </li>
             <li class="nav-item">
@@ -49,8 +50,10 @@
                         </li>
                         {#<li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="{{path('app_livre_index')}}">Gestion des produits</a>
-                        </li>#}
+                        </li>
+                        app_user_index
 
+                        #}
 
 
 

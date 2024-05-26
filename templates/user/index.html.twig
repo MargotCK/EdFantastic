@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Gestion des auteurs{% endblock %}
-{% block h1 %}{% endblock %}
+{% block title %}Gestion des utilisateurs{% endblock %}
+{% block h1 %}Gestion des utilisateurs ({{ users|length }}){% endblock %}
 {% block body %}
     
     <a class="btn btn-info" href="{{ path('app_user_new') }}">Ajouter</a>
@@ -12,6 +12,10 @@
                 <th>Id</th>
                 <th>Prenom</th>
                 <th>Nom</th>
+                <th>Rôle</th>
+                
+                <th>Email</th>
+                <th>Password</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -21,11 +25,35 @@
                 <td>{{ user.id }}</td>
                 <td>{{ user.prenom }}</td>
                 <td>{{ user.nom }}</td>
+
+                <td>
+                    {% for role in user.roles %}
+                        {% if role == "ROLE_ADMIN" %}
+                            {% set name = "Administrateur" %}
+                            {% set color = "success" %}
+                        {% else %}
+                            {% set name = "Client" %}
+                            {% set color = "info" %}
+                        {% endif %}
+                        <span class="badge bg-{{color}}">{{ name}}</span>
+                    {% endfor %}
+                </td>
+               {#} <td>
+                    <div class="form-check form-switch">
+                        <input class="form-check-input" type="checkbox" role="switch" id="switch{{user.id}}" {{user.isVerified ? "checked" : "" }} disabled>
+                        <label class="form-check-label" for="switch{{user.id}}" ></label>
+                    </div>
+                </td>#}
                 <td>{{ user.email }}</td>
                 <td>{{ user.password }}</td>
                 <td>
-                    <a href="{{ path('app_user_show', {'id': user.id}) }}">Fiche</a>
-                    <a href="{{ path('app_user_edit', {'id': user.id}) }}">Modifier</a>
+                    <a class="btn btn-warning" href="{{ path('app_user_show', {'id': user.id}) }}">Fiche</a>
+                </td>
+                <td>
+                    <a class="btn btn-primary" href="{{ path('app_user_edit', {'id': user.id}) }}">Modifier</a>
+                </td>
+                <td>
+                    <a class="btn btn-danger" href="{{ path('app_user_delete', {'id': user.id}) }}">Supprimer</a>
                 </td>
             </tr>
         {% else %}

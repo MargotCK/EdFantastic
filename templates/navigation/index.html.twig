@@ -1,12 +1,12 @@
 {% extends 'base.html.twig' %}
-{% block title %}Accueil{% endblock %}
+{% block title %}Les éditions Fantasticl{% endblock %}
 
 {% block h1 %}
 
     {% if app.user %}
         Bonjour {{app.user.prenom}}
     {% else %}
-        Bienvenue
+        Bienvenue 
     {% endif %}
 
 {% endblock %}

@@ -4,14 +4,17 @@ namespace App\Controller;
 
 use App\Entity\Commande;
 use App\Form\CommandeType;
+use App\Entity\LigneCommande;
+use App\Repository\LivreRepository;
 use App\Repository\CommandeRepository;
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
-#[Route('/profil/commande')]
+#[Route('/profil/commande', name:'app_commande_')]
 class CommandeController extends AbstractController
 {
     // LA ROUTE AFFICHER
@@ -24,63 +27,50 @@ class CommandeController extends AbstractController
     }
 
      // LA ROUTE AJOUTER
-    #[Route('/ajouter', name: 'app_commande_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, EntityManagerInterface $entityManager): Response
+    #[Route('/ajouter', name: 'add')]
+    public function add(SessionInterface $session, LivreRepository $livreRepository, EntityManagerInterface $entityManager): Response
     {
-        $commande = new Commande();
-        $form = $this->createForm(CommandeType::class, $commande);
-        $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager->persist($commande);
-            $entityManager->flush();
+    $this->denyAccessUnlessGranted('ROLE_USER');
 
-            return $this->redirectToRoute('app_commande_index', [], Response::HTTP_SEE_OTHER);
-        }
+    $panier = $session->get('panier', []);
 
-        return $this->render('commande/new.html.twig', [
-            'commande' => $commande,
-            'form' => $form,
-        ]);
+    if($panier === []){
+        $this->addFlash('message', 'Votre panier est vide 😭.');
+        return $this->redirectToRoute('home');
     }
 
-    // LA FICHE DU FORMULAIRE
-    #[Route('/{id}', name: 'app_commande_show', methods: ['GET'])]
-    public function show(Commande $commande): Response
-    {
-        return $this->render('commande/show.html.twig', [
-            'commande' => $commande,
-        ]);
+    //Le panier n'est pas vide, on crée la commande
+    $commande = new Commande();
+
+    // On remplit la commande
+    $commande->setUsers($this->getUser());
+    $commande->setReference(uniqid());
+
+    // On parcourt le panier pour créer les détails de commande
+    foreach($panier as $item => $quantite){
+        $ligneCommande = new LigneCommande();
+
+        // On va chercher le produit
+        $livre = $livreRepository->find($item);
+        
+        $prix = $livre->getPrix();
+
+        // On crée le détail de commande
+        $ligneCommande->setQuantite($quantite);
+        $ligneCommande->setPrix($prix);
+       
+
+        $commande->addligneCommande($ligneCommande);
     }
 
-    // LA ROUTE MODIFIER
-    #[Route('/modifier/{id}', name: 'app_commande_edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, Commande $commande, EntityManagerInterface $entityManager): Response
-    {
-        $form = $this->createForm(CommandeType::class, $commande);
-        $form->handleRequest($request);
+    // On persiste et on flush
+    $em->persist($commande);
+    $em->flush();
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager->flush();
+    $session->remove('panier');
 
-            return $this->redirectToRoute('app_commande_index', [], Response::HTTP_SEE_OTHER);
-        }
-
-        return $this->render('commande/edit.html.twig', [
-            'commande' => $commande,
-            'form' => $form,
-        ]);
-    }
-
-     // LA ROUTE SUPPRIMER
-    #[Route('/{id}', name: 'app_commande_delete', methods: ['POST'])]
-    public function delete(Request $request, Commande $commande, EntityManagerInterface $entityManager): Response
-    {
-        if ($this->isCsrfTokenValid('delete'.$commande->getId(), $request->getPayload()->get('_token'))) {
-            $entityManager->remove($commande);
-            $entityManager->flush();
-        }
-
-        return $this->redirectToRoute('app_commande_index', [], Response::HTTP_SEE_OTHER);
-    }
+    $this->addFlash('message', ' Fantastic ☆*: .｡. o(≧▽≦)o .｡.:*☆ ! Vous recevrez vos livres dans quelques jours !');
+    return $this->redirectToRoute('home');
+}
 }

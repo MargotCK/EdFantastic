@@ -20,7 +20,7 @@
             </tr>
             <tr>
                 <th>Age</th>
-                <td>{{ livre.age }}</td>
+                <td>{{ livre.age.categorie }}</td>
             </tr>
             <tr>
                 <th>Prix</th>
@@ -29,10 +29,6 @@
             <tr>
                 <th>DatePublication</th>
                 <td>{{ livre.datePublication ? livre.datePublication|date('Y-m-d') : '' }}</td>
-            </tr>
-            <tr>
-                <th>NbPage</th>
-                <td>{{ livre.nbPage }}</td>
             </tr>
             <tr>
                 <th>Format</th>
@@ -56,7 +52,7 @@
                 <th>Couv4</th>
                 <td>
                 {% if livre.couv4 %}
-                    <img src="{{asset('imageCouv1/'~ livre.couv1)}}" alt="" class="w-25">
+                    <img src="{{asset('imageCouv4/'~ livre.couv4)}}" alt="" class="w-25">
                 {% else %}
                     <span class="fst-italic text-danger">Non renseignée</span>
                 {% endif %}

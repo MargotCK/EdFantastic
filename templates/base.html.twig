@@ -3,6 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <title>{% block title %}Editions Fantastic{% endblock %}</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
         <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 
@@ -19,48 +20,21 @@
 
     <body>
         {% include "_nav.html.twig" %}
-    
-            <h3 class="text-center text-white  my-2">{% block h1 %}{% endblock %}</h3>
+
         <div class="container">
-        {% block body %}{% endblock %}
+            
+            <h3 class="text-center text-primary my-2">{% block h1 %}{% endblock %}</h3>
+        
+            {% block body %}{% endblock %}
+            
         </div>
 
+         {% include "_footer.html.twig" %}
 
-
-        {# Le footer 
-        <footer class="bg-dark text-white pt-4">
-            <div class="container">
-                <div class="row">
-                    <!-- Icons on the left -->
-                    <div class="col-md-4 d-flex justify-content-start align-items-center mb-3 mb-md-0">
-                        <a href="https://www.instagram.com" class="text-white me-3" target="_blank">
-                            <i class="fab fa-instagram"></i>
-                        </a>
-                        <a href="https://www.facebook.com" class="text-white me-3" target="_blank">
-                            <i class="fab fa-facebook-f"></i>
-                        </a>
-                        <a href="#" class="text-white">
-                            <i class="fas fa-cookie"></i>
-                        </a>
-                    </div>
-
-                    <!-- Links in the center -->
-                    <div class="col-md-4 d-flex justify-content-center align-items-center mb-3 mb-md-0">
-                        <a href="#" class="text-white me-3">Conditions Générales de Vente</a>
-                        <a href="#" class="text-white me-3">Mentions Légales</a>
-                        <a href="#" class="text-white">Contact</a>
-                    </div>
-
-                    <!-- Secure payment text on the right -->
-                    <div class="col-md-4 d-flex justify-content-end align-items-center">
-                        <span class="text-white">Paiement 100% sécurisé</span>
-                    </div>
-                </div>
-            </div>
-        </footer>
+     
 
 <!-- FontAwesome for icons -->
-<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script> #}
+<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script> 
 
 
 

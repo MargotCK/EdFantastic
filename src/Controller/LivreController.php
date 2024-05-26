@@ -25,12 +25,20 @@ class LivreController extends AbstractController
 
     // LA ROUTE AJOUTER
     #[Route('/ajouter', name: 'app_livre_new', methods: ['GET', 'POST'])]
+    //Pour traiter un formulaire il faut récupérer la requête qui a été généré à l'envoi du formulaire, pour cela dans la fonction publique on met en argument "request", pour gérer le stockage en bdd on met l'EntityManagerInterface et un 3 ème argument on peut mettre un SluggerInterface
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
+        // création d'un objet
         $livre = new Livre();
+
+        // création du formulaire
         $form = $this->createForm(LivreType::class, $livre);
+        
+
+        //ici on traite le formulaire
         $form->handleRequest($request);
 
+        //on vérifie que le formulaire est soumis ET valide
         if ($form->isSubmitted() && $form->isValid()) {
 
             $imageFile = $form->get('couv1')->getData();
@@ -38,18 +46,29 @@ class LivreController extends AbstractController
             if($imageFile){
 
                 $nomImage= date('YmdHis').'-'.uniqid().'-'.$imageFile->getClientOriginalName();
-                //$couv4chatAlors = date(YmdHis).'-'.uniquid().'-'.$imageFile->getClientOriginalExtension();
+                //$nomImage = date(YmdHis).'-'.uniquid().'-'.$imageFile->getClientOriginalExtension();
                 $imageFile->move(
                     $this->getParameter('couv1'),
                     $nomImage
                 );
 
-                $livre->setImage($nomImage);
+                $livre->setcouv1($nomImage);
             }
 
+            $imageFile4 = $form->get('couv4')->getData();
+            if ($imageFile4) {
+                $nomImage4 = date('YmdHis').'-'.uniqid().'-'.$imageFile4->getClientOriginalName();
+                $imageFile4->move(
+                    $this->getParameter('couv4'),
+                    $nomImage4
+                );
+                $livre->setCouv4($nomImage4);
+            }
+            // On stocke
             $entityManager->persist($livre);
             $entityManager->flush();
 
+            // On redirige vers
             return $this->redirectToRoute('app_livre_index', [], Response::HTTP_SEE_OTHER);
         }
 

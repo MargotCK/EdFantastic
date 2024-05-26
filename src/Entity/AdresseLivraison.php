@@ -28,6 +28,9 @@ class AdresseLivraison
     #[ORM\ManyToOne(inversedBy: 'AdresseLivraison')]
     private ?Commande $commande = null;
 
+    #[ORM\ManyToOne(inversedBy: 'AdresseLivraison')]
+    private ?User $user = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -89,6 +92,18 @@ class AdresseLivraison
     public function setCommande(?Commande $commande): static
     {
         $this->commande = $commande;
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): static
+    {
+        $this->user = $user;
 
         return $this;
     }

@@ -53,10 +53,24 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(targetEntity: Commande::class, mappedBy: 'User')]
     private Collection $commandes;
 
+    /**
+     * @var Collection<int, AdresseFacture>
+     */
+    #[ORM\OneToMany(targetEntity: AdresseFacture::class, mappedBy: 'user')]
+    private Collection $AdresseFacture;
+
+    /**
+     * @var Collection<int, AdresseLivraison>
+     */
+    #[ORM\OneToMany(targetEntity: AdresseLivraison::class, mappedBy: 'user')]
+    private Collection $AdresseLivraison;
+
     public function __construct()
     {
         $this->livres = new ArrayCollection();
         $this->commandes = new ArrayCollection();
+        $this->AdresseFacture = new ArrayCollection();
+        $this->AdresseLivraison = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -208,6 +222,66 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
             // set the owning side to null (unless already changed)
             if ($commande->getUser() === $this) {
                 $commande->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, AdresseFacture>
+     */
+    public function getAdresseFacture(): Collection
+    {
+        return $this->AdresseFacture;
+    }
+
+    public function addAdresseFacture(AdresseFacture $adresseFacture): static
+    {
+        if (!$this->AdresseFacture->contains($adresseFacture)) {
+            $this->AdresseFacture->add($adresseFacture);
+            $adresseFacture->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAdresseFacture(AdresseFacture $adresseFacture): static
+    {
+        if ($this->AdresseFacture->removeElement($adresseFacture)) {
+            // set the owning side to null (unless already changed)
+            if ($adresseFacture->getUser() === $this) {
+                $adresseFacture->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, AdresseLivraison>
+     */
+    public function getAdresseLivraison(): Collection
+    {
+        return $this->AdresseLivraison;
+    }
+
+    public function addAdresseLivraison(AdresseLivraison $adresseLivraison): static
+    {
+        if (!$this->AdresseLivraison->contains($adresseLivraison)) {
+            $this->AdresseLivraison->add($adresseLivraison);
+            $adresseLivraison->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAdresseLivraison(AdresseLivraison $adresseLivraison): static
+    {
+        if ($this->AdresseLivraison->removeElement($adresseLivraison)) {
+            // set the owning side to null (unless already changed)
+            if ($adresseLivraison->getUser() === $this) {
+                $adresseLivraison->setUser(null);
             }
         }
 

@@ -15,10 +15,10 @@ class Auteur
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 70)]
+    #[ORM\Column(length: 70, nullable: true)]
     private ?string $prenom = null;
 
-    #[ORM\Column(length: 70)]
+    #[ORM\Column(length: 70, nullable: true)]
     private ?string $nom = null;
 
     /**
@@ -73,7 +73,7 @@ class Auteur
     {
         if (!$this->livres->contains($livre)) {
             $this->livres->add($livre);
-            $livre->addAuteur($this);
+            $livre->setAuteur($this);
         }
 
         return $this;
@@ -82,7 +82,11 @@ class Auteur
     public function removeLivre(Livre $livre): static
     {
         if ($this->livres->removeElement($livre)) {
-            $livre->removeAuteur($this);
+        
+
+            if ($livre->getAuteur() === $this) {
+                $livre->setAuteur(null);
+            }
         }
 
         return $this;

@@ -74,6 +74,12 @@ class Livre
     #[ORM\ManyToMany(targetEntity: User::class, inversedBy: 'livres')]
     private Collection $User;
 
+    #[ORM\ManyToOne(inversedBy: 'Livre')]
+    private ?Commande $commande = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?int $nbPage = null;
+
     
 
     public function __construct()
@@ -313,6 +319,30 @@ class Livre
     public function removeUser(User $user): static
     {
         $this->User->removeElement($user);
+
+        return $this;
+    }
+
+    public function getCommande(): ?Commande
+    {
+        return $this->commande;
+    }
+
+    public function setCommande(?Commande $commande): static
+    {
+        $this->commande = $commande;
+
+        return $this;
+    }
+
+    public function getNbPage(): ?int
+    {
+        return $this->nbPage;
+    }
+
+    public function setNbPage(?int $nbPage): static
+    {
+        $this->nbPage = $nbPage;
 
         return $this;
     }

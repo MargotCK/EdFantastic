@@ -3,13 +3,22 @@
 {% block h1 %}Back office{% endblock %}
 
 {% block body %}
-    <a class="btn btn-warning" href={{path("app_livre_index")}}>Gestion des produits</a>
-    <a class="btn btn-warning" href={{path("app_auteur_index")}}>Gestion des auteurs</a>
-<a class="btn btn-warning" href={{path("app_illustrateur_index")}}>Gestion des illustrateurs</a>
-<a class="btn btn-warning" href={{path("app_serie_index")}}>Gestion des collections</a>
-<a class="btn btn-warning" href={{path("app_theme_index")}}>Gestion des thèmes</a>
-<a class="btn btn-warning" href={{path("app_age_index")}}>Gestion des tranches d'âge</a>
-
-
+    <div class="container fluid mt-5">
+        <div class="row mb-4">
+            <div class="col-md-12 d-flex justify-content-center mb-3">
+                <a class="btn btn-warning me-3" href={{path("app_livre_index")}}>Gestion des produits</a>
+                <a class="btn btn-warning me-3" href={{path("app_user_index")}}>Gestion des utilisateurs</a>
+                <a class="btn btn-warning me-3" href={{path("app_auteur_index")}}>Gestion des auteurs</a>
+                <a class="btn btn-warning me-3" href={{path("app_illustrateur_index")}}>Gestion des illustrateurs</a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 d-flex justify-content-center mb-3">
+                <a class="btn btn-warning me-3" href={{path("app_serie_index")}}>Gestion des collections</a>
+                <a class="btn btn-warning me-3" href={{path("app_theme_index")}}>Gestion des thèmes</a>
+                <a class="btn btn-warning me-3" href={{path("app_age_index")}}>Gestion des tranches d'âge</a>
+            </div>
+        </div>
+    </div>
 
 {% endblock %}

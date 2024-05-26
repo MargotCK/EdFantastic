@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+{% block title %}{{livre.titre}}{% endblock %}
+{% block h1 %}{{livre.titre}}{% endblock %}
+
+{% block body %}
+
+    <a class="btn btn-dark" href="{{ path('catalogue') }}">Retour</a>
+
+{#La fiche produit#}
+
+        <h2>{{livre.titre}}</h2>
+
+        {% if livre.resume %}
+            <p{{ livre.resume }}</p>
+        {% endif %}
+
+        <h2>{{ livre.prix }} € </h2>
+
+{#Le panier#}
+
+{% if livre.quantiteStock  %}
+    <form method="post" action="{{path("app_panier")}}" >
+    
+        <select name="quantite" >
+
+            {% set quantity = livre.quantiteStock  %}
+            {% if livre.quantiteStock > 10 %}
+                {% set quantity = 10 %}
+            {% endif %}
+            
+
+            {% for i in 1 .. quantity %}
+            <option value="{{i}}">{{i}}</option>
+            {% endfor %}
+        
+        </select>
+
+        <input type="hidden" name="produit" value="{{livre.id}}">
+        <input type="submit" value="Ajouter au panier" class="btn btn-info" >
+    </form>
+
+{% else %}
+    <h4 class="text-danger">Livre indisponible</h4>
+{% endif %}
+
+    
+{% endblock %}

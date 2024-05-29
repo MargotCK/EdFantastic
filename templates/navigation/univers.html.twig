@@ -1,4 +1,41 @@
 {% extends 'base.html.twig' %}
 {% block title %}L'univers Fantastic{% endblock %}
-{% block h1 %}L'univers Fantastic{% endblock %}
-{% block body %}{% endblock %}
+
+{% block body %}
+    <div class="container mb-6 mt-4">
+        <div class="row">
+            <div class="col-md-10 offset-md-2">
+                <div class="card">
+                    <div class="card-header bg-primary text-white">
+                        <h2>L'univers Fantastic</h2>
+                    </div>
+                    <div class="card-body mt-2 d-flex">
+                        <!-- Colonne pour l'image -->
+                        <div class="col-md-4">
+                            <img src="{{ asset('image/port-8754737_640.jpg') }}" class="img-fluid rounded-start" alt="Image de l'édito">
+                        </div>
+                        <!-- Colonne pour le texte -->
+                        <div class="col-md-8">
+                            <p class="card-text">
+                                Bienvenue dans l'univers de Fantastic, votre maison d'édition dédiée à la découverte de nouveaux horizons littéraires. 
+                                Chez Fantastic, nous croyons en la puissance des mots pour transporter, inspirer et transformer. 
+                                Notre mission est de dénicher et de publier des œuvres qui captivent l'imagination et enrichissent l'esprit.
+                            </p>
+                            <p class="card-text">
+                                Nous sommes fiers de collaborer avec des auteurs talentueux et passionnés, dont les écrits ouvrent des fenêtres sur des mondes inconnus, 
+                                des époques lointaines et des perspectives inédites. Chaque livre que nous publions est le fruit d'une rencontre unique entre un auteur et ses lecteurs, 
+                                une aventure littéraire que nous sommes ravis de partager avec vous.
+                            </p>
+                            <p class="card-text">
+                                Merci de nous accompagner dans ce voyage extraordinaire. Que la lecture soit pour vous une source constante de joie et de découverte.
+                            </p>
+                            <p class="card-text text-end">
+                                L'équipe Fantastic
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -4,6 +4,10 @@
 
 {% block body %}
 
-<a class="btn btn-success" href="">Payer</a>
-
+    {% if app.user %}
+        <a class="btn btn-success" href="{{path('app_stripe')}}">Payer</a>
+    {% else %}
+        <h2>Veuillez vous connecter</h2>
+    {% endif %}
+    
 {% endblock %}

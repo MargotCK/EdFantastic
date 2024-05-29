@@ -12,10 +12,11 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class PanierController extends AbstractController
 {
     #[Route('', name: 'app_panier')]
+
     public function index(SessionInterface $session): Response
     {
         $panier = $session->get('panier', []);
-        dump($panier);
+        
 
         return $this->render('panier/index.html.twig', [
             
@@ -23,7 +24,8 @@ class PanierController extends AbstractController
     }
 
     
-    #[Route('/ajouter', name: 'app_panier_new')]
+    #[Route('/ajouter', name: 'app_panier_new', methods: ['POST'])]
+
     public function add(Request $request, SessionInterface $session): Response
     {
         $produitId = $request->request->get('produit');
@@ -41,11 +43,7 @@ class PanierController extends AbstractController
 
         return $this->redirectToRoute('app_panier');
 
-        }
-
-
-
-
+    }
 }
 
 

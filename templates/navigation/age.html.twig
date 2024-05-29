@@ -1,4 +1,20 @@
 {% extends 'base.html.twig' %}
-{% block title %}Age{% endblock %}
-{% block h1 %}Age{% endblock %}
-{% block body %}{% endblock %}
+{% block title %}Livres par tranche d'âge{% endblock %}
+{% block h1 %}Livres par tranche d'âge{% endblock %}
+{% block body %}
+
+    <div class ="row justify-content-between">
+        {% for age in ages %}
+            <div class="card mb-4 mt-4" style="width: 18rem;">
+            <h2>Tranche d'âge: {{age.categorie }}</h2>
+                <img src="{{asset('imageCouv1/'~ livre.couv1)}}" class="card-img-top" alt="{{ livre.couv1 }}" width="70" height="280" >
+                    <div class="card-body">
+                        <h5 class="card-title text-center">{{livre.titre}}</h5>
+                        <p class="card-text text-center">{{livre.prix}} €</p>
+                        <a class="btn btn-warning w-100" href="{{path('fiche_livre', {'id': livre.id})}}">Voir le livre</a>
+                    </div>
+            </div>
+        {% endfor %}
+
+    </div>
+{% endblock %}

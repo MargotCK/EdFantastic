@@ -10,10 +10,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class NavigationController extends AbstractController
 {
-
-    
-    
-
     #les routes de la barre des menus#
     #[Route('/', name: 'home')]
     public function index(): Response

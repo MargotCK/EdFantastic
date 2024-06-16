@@ -10,8 +10,8 @@
         <thead class="table-warning">
             <tr>
                 <th>Id</th>
-                <th>Prénom</th>
-                <th>Nom</th>
+                <th>Prénom, Nom </th>
+                
                 <th>Modifier</th>
                 <th>Supprimer</th>
             </tr>
@@ -21,7 +21,7 @@
             <tr>
                 <td>{{ illustrateur.id }}</td>
                 <td>{{ illustrateur.prenom }}</td>
-                <td>{{ illustrateur.nom }}</td>
+                
                 <td>
                     <a class="btn btn-primary" href="{{ path('app_illustrateur_edit', {'id': illustrateur.id}) }}">Modifier</a>
                 </td>

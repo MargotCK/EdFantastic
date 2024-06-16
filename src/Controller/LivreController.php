@@ -52,7 +52,7 @@ class LivreController extends AbstractController
                     $nomImage
                 );
 
-                $livre->setcouv1($nomImage);
+                $livre->setCouv1($nomImage);
             }
 
             $imageFile4 = $form->get('couv4')->getData();
@@ -112,8 +112,8 @@ class LivreController extends AbstractController
     {
         if ($this->isCsrfTokenValid('delete'.$livre->getId(), $request->getPayload()->get('_token'))) {
 
-            if ($livre->getImage()){
-                unlink($this->getParameter('livre'). $livre->getImage());
+            if ($livre->getCouv1()){
+                unlink($this->getParameter('livre'). $livre->getCouv1());
             }
     
             $entityManager->remove($livre);

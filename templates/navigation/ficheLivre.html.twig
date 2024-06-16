@@ -6,42 +6,39 @@
 
     <a class="btn btn-dark" href="{{ path('catalogue') }}">Retour</a>
 
-{#La fiche produit#}
+{# La fiche produit #}
 
-        <h2>{{livre.titre}}</h2>
-
-        {% if livre.resume %}
-            <p{{ livre.resume }}</p>
-        {% endif %}
-
-        <h2>{{ livre.prix }} € </h2>
-
-{#Le panier#}
-
-{% if livre.quantiteStock  %}
-    <form method="post" action="{{path("app_panier_new")}}" >
+    <h2>{{livre.titre}}</h2>
     
-        <select name="quantite" >
+    {% if livre.couv1 %}
+        <img src="{{ asset ('livre.couv1') }}" alt="Couverture de {{ livre.titre }}" class="img-fluid">
+    {% endif %}
+    
+    {% if livre.resume %}
+        <p>{{ livre.resume }}</p>
+    {% endif %}
 
-            {% set quantity = livre.quantiteStock  %}
-            {% if livre.quantiteStock > 10 %}
-                {% set quantity = 10 %}
-            {% endif %}
-            
+    <h2>{{ livre.prix }} € </h2>
 
-            {% for i in 1 .. quantity %}
-            <option value="{{i}}">{{i}}</option>
-            {% endfor %}
-        
-        </select>
+{# Le panier #}
 
-        <input type="hidden" name="produit" value="{{livre.id}}">
-        <input type="submit" value="Ajouter au panier" class="btn btn-info" >
-    </form>
+    {% if livre.quantiteStock %}
+        <form method="post" action="{{ path('app_panier_new') }}">
+            <select name="quantite">
+                {% set quantity = livre.quantiteStock %}
+                {% if livre.quantiteStock > 10 %}
+                    {% set quantity = 10 %}
+                {% endif %}
+                {% for i in 1..quantity %}
+                    <option value="{{ i }}">{{ i }}</option>
+                {% endfor %}
+            </select>
 
-{% else %}
-    <h4 class="text-danger">Livre indisponible</h4>
-{% endif %}
-
+            <input type="hidden" name="produit" value="{{ livre.id }}">
+            <input type="submit" value="Ajouter au panier" class="btn btn-info">
+        </form>
+    {% else %}
+        <h4 class="text-danger">Livre indisponible</h4>
+    {% endif %}
     
 {% endblock %}
